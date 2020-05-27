@@ -56,7 +56,8 @@ class App extends Component {
             {name:"Chandra", age:29},
             {name:"Rajesh", age:27},
             {name:"Ajay", age:29}
-        ]
+        ],
+        showPerson: true
     }
 
     buttonHandler = (name) => {
@@ -82,6 +83,11 @@ class App extends Component {
         })
     }
 
+    toggleButtonHandler = () => {
+        const doesShow = this.state.showPerson;
+        this.setState({showPerson:!doesShow})
+    }
+
     //Use Bind when possible instead of using arrow function//() => this.buttonHandler("Surya!")
     //As Bind is efficient over this
     render() {
@@ -90,7 +96,8 @@ class App extends Component {
             backgroundColor: 'grey',
             font: 'inherit',
             border: '1px solid black',
-            padding: '10px'
+            padding: '10px',
+            margin: '10px'
         }
 
         return (
@@ -100,21 +107,28 @@ class App extends Component {
                 <button
                     style={buttonStyle}
                     onClick={() => this.buttonHandler("Surya!")}>Click This Button:</button>
-                <Person
-                    name={this.state.persons[0].name}
-                    age={this.state.persons[0].age}
-                />
-                <Person
-                    name={this.state.persons[1].name}
-                    age={this.state.persons[1].age}
-                    click={this.buttonHandler.bind(this, "Chandra")}
-                    changed={this.nameChangeHandler}>
-                    My Hobie's are Playing Cricket
-                </Person>
-                <Person
-                    name={this.state.persons[2].name}
-                    age={this.state.persons[2].age}
-                />
+                <button
+                    style={buttonStyle}
+                    onClick={this.toggleButtonHandler}>Toggle Button</button>
+                {this.state.showPerson ?
+                    <div>
+                        <Person
+                            name={this.state.persons[0].name}
+                            age={this.state.persons[0].age}
+                        />
+                        <Person
+                            name={this.state.persons[1].name}
+                            age={this.state.persons[1].age}
+                            click={this.buttonHandler.bind(this, "Chandra")}
+                            changed={this.nameChangeHandler}>
+                            My Hobie's are Playing Cricket
+                        </Person>
+                        <Person
+                            name={this.state.persons[2].name}
+                            age={this.state.persons[2].age}
+                        />
+                    </div> : null
+                }
             </div>
         );
         //return React.createElement('div', null, )
