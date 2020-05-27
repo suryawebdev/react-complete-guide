@@ -100,6 +100,30 @@ class App extends Component {
             margin: '10px'
         }
 
+        let person = null;
+
+        if (this.state.showPerson){
+            person = (
+                <div>
+                    <Person
+                        name={this.state.persons[0].name}
+                        age={this.state.persons[0].age}
+                    />
+                    <Person
+                        name={this.state.persons[1].name}
+                        age={this.state.persons[1].age}
+                        click={this.buttonHandler.bind(this, "Chandra")}
+                        changed={this.nameChangeHandler}>
+                        My Hobie's are Playing Cricket
+                    </Person>
+                    <Person
+                        name={this.state.persons[2].name}
+                        age={this.state.persons[2].age}
+                    />
+                </div>
+            );
+        }
+
         return (
             <div className="App">
                 <h1>This is Surya</h1>
@@ -110,25 +134,7 @@ class App extends Component {
                 <button
                     style={buttonStyle}
                     onClick={this.toggleButtonHandler}>Toggle Button</button>
-                {this.state.showPerson ?
-                    <div>
-                        <Person
-                            name={this.state.persons[0].name}
-                            age={this.state.persons[0].age}
-                        />
-                        <Person
-                            name={this.state.persons[1].name}
-                            age={this.state.persons[1].age}
-                            click={this.buttonHandler.bind(this, "Chandra")}
-                            changed={this.nameChangeHandler}>
-                            My Hobie's are Playing Cricket
-                        </Person>
-                        <Person
-                            name={this.state.persons[2].name}
-                            age={this.state.persons[2].age}
-                        />
-                    </div> : null
-                }
+                {person}
             </div>
         );
         //return React.createElement('div', null, )
