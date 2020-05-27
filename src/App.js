@@ -88,6 +88,13 @@ class App extends Component {
         this.setState({showPerson:!doesShow})
     }
 
+    deletePersonHandler = (personIndex) => {
+        //const persons = this.state.persons.slice();//Slice create a new array with different pointer instead of using the same reference of the previous array.
+        const persons = [...this.state.persons];//Spread operator does the same.
+        persons.splice(personIndex, 1);
+        this.setState({persons: persons});
+    }
+
     //Use Bind when possible instead of using arrow function//() => this.buttonHandler("Surya!")
     //As Bind is efficient over this
     render() {
@@ -105,21 +112,13 @@ class App extends Component {
         if (this.state.showPerson){
             person = (
                 <div>
-                    <Person
-                        name={this.state.persons[0].name}
-                        age={this.state.persons[0].age}
-                    />
-                    <Person
-                        name={this.state.persons[1].name}
-                        age={this.state.persons[1].age}
-                        click={this.buttonHandler.bind(this, "Chandra")}
-                        changed={this.nameChangeHandler}>
-                        My Hobie's are Playing Cricket
-                    </Person>
-                    <Person
-                        name={this.state.persons[2].name}
-                        age={this.state.persons[2].age}
-                    />
+                    {this.state.persons.map((x, index) => {
+                       return <Person
+                           click={() => this.deletePersonHandler(index)}
+                           name={x.name}
+                           age={x.age}
+                       />
+                    })}
                 </div>
             );
         }
@@ -142,3 +141,20 @@ class App extends Component {
 }
 
 export default App;
+
+//Notes
+// <Person
+//     name={this.state.persons[0].name}
+//     age={this.state.persons[0].age}
+// />
+// <Person
+//     name={this.state.persons[1].name}
+//     age={this.state.persons[1].age}
+//     click={this.buttonHandler.bind(this, "Chandra")}
+//     changed={this.nameChangeHandler}>
+//     My Hobie's are Playing Cricket
+// </Person>
+// <Person
+//     name={this.state.persons[2].name}
+//     age={this.state.persons[2].age}
+// />
