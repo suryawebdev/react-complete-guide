@@ -52,10 +52,10 @@ import Person from './Person/Person';
 class App extends Component {
     state = {
         persons : [
-            {name:"Surya", age:28},
-            {name:"Chandra", age:29},
-            {name:"Rajesh", age:27},
-            {name:"Ajay", age:29}
+            {id: "asas", name:"Surya", age:28},
+            {id: "abj", name:"Chandra", age:29},
+            {id: "lksd", name:"Rajesh", age:27},
+            {id: "isej", name:"Ajay", age:29}
         ],
         showPerson: true
     }
@@ -73,13 +73,24 @@ class App extends Component {
         })
     }
 
-    nameChangeHandler = (event) => {
+    nameChangeHandler = (event, id) => {
+        const personIndex = this.state.persons.findIndex(p => {
+           return p.id === id;
+        });
+
+        const person = {
+            ...this.state.persons[personIndex]
+        };//Spread operator
+
+        // const person = Object.assign({}, this.state.persons[personIndex]);// It's alternative method for the above
+
+        person.name = event.target.value;
+
+        const persons = [...this.state.persons];
+        persons[personIndex] = person;
+
         this.setState({
-            persons :[
-                {name:'Surya', age:28},
-                {name:event.target.value, age:26},
-                {name:"Prakash", age:26}
-            ]
+            persons : persons
         })
     }
 
@@ -117,6 +128,8 @@ class App extends Component {
                            click={() => this.deletePersonHandler(index)}
                            name={x.name}
                            age={x.age}
+                           key={x.id}
+                           changed={(event) => this.nameChangeHandler(event, x.id)}
                        />
                     })}
                 </div>
@@ -158,3 +171,6 @@ export default App;
 //     name={this.state.persons[2].name}
 //     age={this.state.persons[2].age}
 // />
+
+//Key Concept: In react key is unique id, as react before rendering does virtual dom comparision with it's previous state
+    //and only renders the items that are missing or changed if it has key properties defined.
