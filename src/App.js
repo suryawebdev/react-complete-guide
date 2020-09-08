@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import React, {useState} from 'react';//THis is for using react hooks and all it's components
 import './App.css';
-import Radium from 'radium';
+import Radium, {StyleRoot} from 'radium';
 import Person from './Person/Person';
 
 //React Hooks concept
@@ -148,17 +148,22 @@ class App extends Component {
         }
 
         return (
-            <div className="App">
-                <h1>This is Surya</h1>
-                <p>This is the React Application I have started working on.</p>
-                <button
+            <StyleRoot>
+                <div className="App">
+                    <h1>This is Surya</h1>
+                    <p>This is the React Application I have started working on.</p>
+                    <button
                     style={buttonStyle}
-                    onClick={() => this.buttonHandler("Surya!")}>Click This Button:</button>
-                {/* <button
-                    style={buttonStyle}
-                    onClick={this.toggleButtonHandler}>Toggle Button</button> */}
-                {person}
-            </div>
+                    onClick={() => this.buttonHandler("Surya!")}
+                    >
+                    Click This Button:
+                    </button>
+                    {/* <button
+                        style={buttonStyle}
+                        onClick={this.toggleButtonHandler}>Toggle Button</button> */}
+                    {person}
+                </div>
+            </StyleRoot>
         );
         //return React.createElement('div', null, )
     }
