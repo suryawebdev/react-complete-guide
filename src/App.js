@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import React, {useState} from 'react';//THis is for using react hooks and all it's components
 import './App.css';
+import Radium from 'radium';
 import Person from './Person/Person';
 
 //React Hooks concept
@@ -111,11 +112,16 @@ class App extends Component {
     render() {
         //Inline styles
         const buttonStyle = {
-            backgroundColor: 'grey',
+            backgroundColor: 'green',
             font: 'inherit',
             border: '1px solid black',
             padding: '10px',
-            margin: '10px'
+            margin: '10px',
+            cursor: 'pointer',
+            ':hover': {
+                backgroundColor: 'lightgreen',
+                color:'black'
+            }
         }
 
         let person = null;
@@ -134,6 +140,11 @@ class App extends Component {
                     })}
                 </div>
             );
+            buttonStyle.backgroundColor = 'red';
+            buttonStyle[':hover'] = {
+                backgroundColor: 'yellow',
+                color:'black'
+            }
         }
 
         return (
@@ -143,9 +154,9 @@ class App extends Component {
                 <button
                     style={buttonStyle}
                     onClick={() => this.buttonHandler("Surya!")}>Click This Button:</button>
-                <button
+                {/* <button
                     style={buttonStyle}
-                    onClick={this.toggleButtonHandler}>Toggle Button</button>
+                    onClick={this.toggleButtonHandler}>Toggle Button</button> */}
                 {person}
             </div>
         );
@@ -153,7 +164,7 @@ class App extends Component {
     }
 }
 
-export default App;
+export default Radium(App);
 
 //Notes
 // <Person
