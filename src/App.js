@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import React, {useState} from 'react';//THis is for using react hooks and all it's components
+import Styled from 'styled-components';
 import './App.css';
-import Radium, {StyleRoot} from 'radium';
 import Person from './Person/Person';
 
 //React Hooks concept
@@ -50,6 +50,20 @@ import Person from './Person/Person';
 // export default app;
 
 //Class Based React concepts
+
+const StyledButton = Styled.button`
+    background-color: green;
+    font: inherit;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+    &:hover {
+        background-color: yellow;
+        color:black;
+    }
+`;
+
 class App extends Component {
     state = {
         persons : [
@@ -148,28 +162,25 @@ class App extends Component {
         }
 
         return (
-            <StyleRoot>
-                <div className="App">
-                    <h1>This is Surya</h1>
-                    <p>This is the React Application I have started working on.</p>
-                    <button
+          <div className="App">
+            <h1>This is Surya</h1>
+            <p>This is the React Application I have started working on.</p>
+            <StyledButton
+              onClick={() => this.buttonHandler("Surya!")}
+            >
+              Click This Button:
+            </StyledButton>
+            {/* <button
                     style={buttonStyle}
-                    onClick={() => this.buttonHandler("Surya!")}
-                    >
-                    Click This Button:
-                    </button>
-                    {/* <button
-                        style={buttonStyle}
-                        onClick={this.toggleButtonHandler}>Toggle Button</button> */}
-                    {person}
-                </div>
-            </StyleRoot>
+                    onClick={this.toggleButtonHandler}>Toggle Button</button> */}
+            {person}
+          </div>
         );
         //return React.createElement('div', null, )
     }
 }
 
-export default Radium(App);
+export default App;
 
 //Notes
 // <Person
@@ -190,3 +201,20 @@ export default Radium(App);
 
 //Key Concept: In react key is unique id, as react before rendering does virtual dom comparision with it's previous state
     //and only renders the items that are missing or changed if it has key properties defined.
+
+//Notes: 09/08/2020
+//Radium: 
+    //Radium is an external library for styling inline css
+    //Mostly for writing inline css browser states (:hover, :focus, :active), keyframe animations, media queries etc.
+    //Radium is higher order react component, which wraps around react
+
+//Styled-Components
+    //styled components are same as radium but works as functions with backticks.
+    //We can update dynamic styles
+    //Ex : const styledButton = styled.div`//write your normal css here.//`;
+    //<styleButton>This is Button</styledButton>
+    //Now the above styledButton can be used for any button you want to have similiar css look and feel;
+    //We can even write inline css and media queries without any issues or without even using radium
+
+
+    
