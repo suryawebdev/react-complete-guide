@@ -52,14 +52,14 @@ import Person from './Person/Person';
 //Class Based React concepts
 
 const StyledButton = Styled.button`
-    background-color: green;
+    background-color: ${props => props.alt ? 'red' : 'green'};
     font: inherit;
     border: 1px solid black;
     padding: 10px;
     margin: 10px;
     cursor: pointer;
     &:hover {
-        background-color: yellow;
+        background-color: ${props => props.alt ? 'red' : 'yellow'};
         color:black;
     }
 `;
@@ -165,7 +165,7 @@ class App extends Component {
           <div className="App">
             <h1>This is Surya</h1>
             <p>This is the React Application I have started working on.</p>
-            <StyledButton
+            <StyledButton altProps={this.state.showPerson}
               onClick={() => this.buttonHandler("Surya!")}
             >
               Click This Button:
@@ -215,6 +215,12 @@ export default App;
     //<styleButton>This is Button</styledButton>
     //Now the above styledButton can be used for any button you want to have similiar css look and feel;
     //We can even write inline css and media queries without any issues or without even using radium
+    
+    //In styled components we can even combine javascript in css by defining props
+    //Ex: background-color: ${props => props.alt ? 'red' : 'green'}
+
+//Drawbacks of using radium and styled components:
+    //common - Always writing css in JS file is heavy for js file to load and it is not best practice
 
 
     
