@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-// import React, {useState} from 'react';//THis is for using react hooks and all it's components
-// import Styled from 'styled-components';
 
 import CSSClasses from './App.module.css';
-import Person from './Person/Person';
+import Persons from '../Components/Persons/Persons';
+import Cockpit from '../Components/Cockpit/Cockpit';
 
 class App extends Component {
     state = {
@@ -66,37 +65,26 @@ class App extends Component {
     //As Bind is efficient over this
     render() {
         let person = null;
-        let btnClass = [CSSClasses.button];
+        // let btnClass = [CSSClasses.button];
 
         if (this.state.showPerson){
             person = (
                 <div>
-                    {this.state.persons.map((x, index) => {
-                       return <Person
-                           click={() => this.deletePersonHandler(index)}
-                           name={x.name}
-                           age={x.age}
-                           key={x.id}
-                           changed={(event) => this.nameChangeHandler(event, x.id)}
-                       />
-                    })}
+                    <Persons
+                    person={this.state.persons}
+                    deleted={this.deletePersonHandler}
+                    changed={this.nameChangeHandler}/>
                 </div>
             );
-            btnClass.push(CSSClasses.Yellow);
+            // btnClass.push(CSSClasses.Yellow);
         }
 
         return (
           <div className={CSSClasses.App}>
-            <h1>This is Surya</h1>
-            <p>This is the React Application I have started working on.</p>
-            <button className={btnClass.join(' ')}
-              onClick={() => this.buttonHandler("Surya!")}
-            >
-              Click This Button:
-            </button>
-            {/* <button
-                    style={buttonStyle}
-                    onClick={this.toggleButtonHandler}>Toggle Button</button> */}
+            <Cockpit 
+                persons ={this.state.persons}
+                toggle={this.toggleButtonHandler}
+                showPerson={this.state.showPerson}/>
             {person}
           </div>
         );
@@ -105,6 +93,18 @@ class App extends Component {
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
 
 /********************************************************************************************
  * Notes and comments
@@ -130,6 +130,11 @@ export default App;
 
 
 //React Hooks concept
+
+// import React, {useState} from 'react';//THis is for using react hooks and all it's components
+// import Styled from 'styled-components';
+
+
 // const app = props => {
 //     //Array deserialization //const []
 //     //Using useState will override the whole primary data or array with secondary array/state created
@@ -203,8 +208,13 @@ export default App;
     //     }
     // }
 
-                // buttonStyle.backgroundColor = 'red';
-            // buttonStyle[':hover'] = {
-            //     backgroundColor: 'yellow',
-            //     color:'black'
-            // }
+    // buttonStyle.backgroundColor = 'red';
+    // buttonStyle[':hover'] = {
+    //     backgroundColor: 'yellow',
+    //     color:'black'
+    // }
+
+// <button className={btnClass.join(' ')}
+//     onClick={() => this.buttonHandler("Surya!")}>
+//     Click This Button:
+//             </button>
