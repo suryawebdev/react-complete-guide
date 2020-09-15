@@ -5,66 +5,6 @@ import React, { Component } from 'react';
 import CSSClasses from './App.module.css';
 import Person from './Person/Person';
 
-//React Hooks concept
-// const app = props => {
-//     //Array deserialization //const []
-//     //Using useState will override the whole primary data or array with secondary array/state created
-//     const [personPrevState, personSetState] = useState({//Array deserialization and useState for having both present and prev states
-//         persons : [
-//             {name:"Surya", age:28},
-//             {name:"Chandra", age:29},
-//             {name:"Rajesh", age:27},
-//             {name:"Ajay", age:29}
-//         ]
-//     });
-//
-//     const [otherState, otherPrevState] = useState("This is some other value");
-//
-//     console.log(personPrevState, otherState);
-//
-//     const buttonHandler = () => {
-//         personSetState({
-//             persons :[
-//                 {name:"Surya", age:28},
-//                 {name:"Polina", age:26},
-//                 {name:"Rajesh", age:27},
-//                 {name:"Ajay", age:25}
-//             ]
-//         })
-//     }
-//
-//     return (
-//         <div className="App">
-//             <h1>This is Surya</h1>
-//             <p>This is the React Application I have started working on.</p>
-//             <button onClick={buttonHandler}>Click This Button:</button>
-//             <Person name={personPrevState.persons[0].name} age={personPrevState.persons[0].age}/>
-//             <Person name={personPrevState.persons[1].name} age={personPrevState.persons[1].age}>My Hobie's are Playing Cricket</Person>
-//             <Person name={personPrevState.persons[2].name} age={personPrevState.persons[2].age}/>
-//             <Person name={personPrevState.persons[3].name} age={personPrevState.persons[3].age}/>
-//         </div>
-//     );
-//
-//
-// }
-//
-// export default app;
-
-//Class Based React concepts
-
-// const StyledButton = Styled.button`
-    // background-color: ${props => props.alt ? 'red' : 'green'};
-    // font: inherit;
-    // border: 1px solid black;
-    // padding: 10px;
-    // margin: 10px;
-    // cursor: pointer;
-    // &:hover {
-    //     background-color: ${props => props.alt ? 'red' : 'yellow'};
-    //     color:black;
-    // }
-// `;
-
 class App extends Component {
     state = {
         persons : [
@@ -125,20 +65,6 @@ class App extends Component {
     //Use Bind when possible instead of using arrow function//() => this.buttonHandler("Surya!")
     //As Bind is efficient over this
     render() {
-        //Inline styles
-        // const buttonStyle = {
-        //     backgroundColor: 'green',
-        //     font: 'inherit',
-        //     border: '1px solid black',
-        //     padding: '10px',
-        //     margin: '10px',
-        //     cursor: 'pointer',
-        //     ':hover': {
-        //         backgroundColor: 'lightgreen',
-        //         color:'black'
-        //     }
-        // }
-
         let person = null;
         let btnClass = [CSSClasses.button];
 
@@ -156,12 +82,6 @@ class App extends Component {
                     })}
                 </div>
             );
-
-            // buttonStyle.backgroundColor = 'red';
-            // buttonStyle[':hover'] = {
-            //     backgroundColor: 'yellow',
-            //     color:'black'
-            // }
             btnClass.push(CSSClasses.Yellow);
         }
 
@@ -186,6 +106,10 @@ class App extends Component {
 
 export default App;
 
+/********************************************************************************************
+ * Notes and comments
+ * 
+ */
 //Notes
 // <Person
 //     name={this.state.persons[0].name}
@@ -205,6 +129,82 @@ export default App;
 
 
 
+//React Hooks concept
+// const app = props => {
+//     //Array deserialization //const []
+//     //Using useState will override the whole primary data or array with secondary array/state created
+//     const [personPrevState, personSetState] = useState({//Array deserialization and useState for having both present and prev states
+//         persons : [
+//             {name:"Surya", age:28},
+//             {name:"Chandra", age:29},
+//             {name:"Rajesh", age:27},
+//             {name:"Ajay", age:29}
+//         ]
+//     });
+//
+//     const [otherState, otherPrevState] = useState("This is some other value");
+//
+//     console.log(personPrevState, otherState);
+//
+//     const buttonHandler = () => {
+//         personSetState({
+//             persons :[
+//                 {name:"Surya", age:28},
+//                 {name:"Polina", age:26},
+//                 {name:"Rajesh", age:27},
+//                 {name:"Ajay", age:25}
+//             ]
+//         })
+//     }
+//
+//     return (
+//         <div className="App">
+//             <h1>This is Surya</h1>
+//             <p>This is the React Application I have started working on.</p>
+//             <button onClick={buttonHandler}>Click This Button:</button>
+//             <Person name={personPrevState.persons[0].name} age={personPrevState.persons[0].age}/>
+//             <Person name={personPrevState.persons[1].name} age={personPrevState.persons[1].age}>My Hobie's are Playing Cricket</Person>
+//             <Person name={personPrevState.persons[2].name} age={personPrevState.persons[2].age}/>
+//             <Person name={personPrevState.persons[3].name} age={personPrevState.persons[3].age}/>
+//         </div>
+//     );
+//
+//
+// }
+//
+// export default app;
 
+//Class Based React concepts
 
-    
+// const StyledButton = Styled.button`
+    // background-color: ${props => props.alt ? 'red' : 'green'};
+    // font: inherit;
+    // border: 1px solid black;
+    // padding: 10px;
+    // margin: 10px;
+    // cursor: pointer;
+    // &:hover {
+    //     background-color: ${props => props.alt ? 'red' : 'yellow'};
+    //     color:black;
+    // }
+// `;
+
+    //Inline styles
+    // const buttonStyle = {
+    //     backgroundColor: 'green',
+    //     font: 'inherit',
+    //     border: '1px solid black',
+    //     padding: '10px',
+    //     margin: '10px',
+    //     cursor: 'pointer',
+    //     ':hover': {
+    //         backgroundColor: 'lightgreen',
+    //         color:'black'
+    //     }
+    // }
+
+                // buttonStyle.backgroundColor = 'red';
+            // buttonStyle[':hover'] = {
+            //     backgroundColor: 'yellow',
+            //     color:'black'
+            // }
