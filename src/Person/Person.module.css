@@ -5,4 +5,13 @@
     box-shadow: 0 2px 3px #896868;
     padding: 20px;
     text-align: center;
+    background-color: black;
+    color: red;
+}
+
+
+@media (min-width: 500px) {
+    .Person {
+        width: 450px;
+    }  
 }
