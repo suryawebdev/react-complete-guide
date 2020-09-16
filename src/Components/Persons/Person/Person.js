@@ -1,5 +1,28 @@
-import React from 'react';
+import React, { Component} from 'react';
 import PersonCSS from './Person.module.css';
+
+
+class Person extends Component {
+    render() {
+        console.log("6. [Person.js] render..")
+        return (
+            <div className={PersonCSS.Person}>
+                <p onClick={this.props.click}>This is {this.props.name} and I am {this.props.age} years age</p>
+                <p>{this.props.children}</p>
+                <input type="text" onChange={this.props.changed} value={this.props.name} />
+            </div>
+        )
+    }
+
+};
+
+export default Person;
+
+
+//Notes:
+//in the above input onchange and value goes together for two way binding
+
+//Styled components usage.
 
 // import Styled from 'styled-components';
 
@@ -18,19 +41,15 @@ import PersonCSS from './Person.module.css';
   // }
 // `;
 
-const person = (props) => {
-    console.log("6. [Person.js] render..")
-    return (
-        <div className={PersonCSS.Person}>
-            <p onClick={props.click}>This is {props.name} and I am {props.age} years age</p>
-            <p>{props.children}</p>
-            <input type="text" onChange={props.changed} value={props.name}/>
-        </div>
-    )
-};
+//functional components
 
-export default person;
-
-
-//Notes:
-//in the above input onchange and value goes together for two way binding
+// const person = (props) => {
+//     console.log("6. [Person.js] render..")
+//     return (
+//         <div className={PersonCSS.Person}>
+//             <p onClick={props.click}>This is {props.name} and I am {props.age} years age</p>
+//             <p>{props.children}</p>
+//             <input type="text" onChange={props.changed} value={props.name} />
+//         </div>
+//     )
+// };
