@@ -19,6 +19,7 @@ import PersonCSS from './Person.module.css';
 // `;
 
 const person = (props) => {
+    console.log("6. [Person.js] render..")
     return (
         <div className={PersonCSS.Person}>
             <p onClick={props.click}>This is {props.name} and I am {props.age} years age</p>

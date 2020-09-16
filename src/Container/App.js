@@ -5,6 +5,25 @@ import Persons from '../Components/Persons/Persons';
 import Cockpit from '../Components/Cockpit/Cockpit';
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        console.log("1.[App.js Constructor.]");
+    }
+
+    static getDerivedStateFromProps (props, state) {
+        console.log("2. [App.js getDerivedStateFromProps.]", state);
+        return state;
+    }
+
+    //ComponentWillMount is deprecated method which is no longer supported by react in lastest updates.
+    // componentWillMount() {
+    //     console.log("8. [App.js] componentWillMount.")
+    // }
+
+    componentDidMount() {
+        console.log("7. [App.js] componentDidMount.")
+    }
+
     state = {
         persons : [
             {id: "asas", name:"Surya", age:28},
@@ -12,7 +31,7 @@ class App extends Component {
             {id: "lksd", name:"Rajesh", age:27},
             {id: "isej", name:"Ajay", age:29}
         ],
-        showPerson: true
+        showPerson: false
     }
 
     buttonHandler = (name) => {
@@ -65,8 +84,8 @@ class App extends Component {
     //As Bind is efficient over this
     render() {
         let person = null;
-        // let btnClass = [CSSClasses.button];
-
+        
+        console.log("3. [App.js Render..]");
         if (this.state.showPerson){
             person = (
                 <div>
@@ -76,12 +95,12 @@ class App extends Component {
                     changed={this.nameChangeHandler}/>
                 </div>
             );
-            // btnClass.push(CSSClasses.Yellow);
         }
 
         return (
           <div className={CSSClasses.App}>
             <Cockpit 
+                title={this.props.appTitle}
                 persons ={this.state.persons}
                 toggle={this.toggleButtonHandler}
                 showPerson={this.state.showPerson}/>
