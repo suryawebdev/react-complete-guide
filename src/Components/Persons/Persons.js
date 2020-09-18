@@ -3,6 +3,30 @@ import React, {Component} from 'react';
 import Person from './Person/Person';
 
 class Persons extends Component {
+    // static getDerivedStateFromProps(props, state) {
+    //     console.log("[Persons.js] getDerivedStateFromProps", state);
+    //     return state;
+    // }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log("[Persons.js] shouldComponentUpdate", nextState);
+        return true;
+    }
+
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        console.log("[Persons.js] getSnapshotBeforeUpdate", prevState);
+        return {message:"Something!Snapshot..!"};
+    }
+
+    componentDidUpdate(prevProps, prevState, snapShot) {
+        console.log("[Persons.js] componentDidUpdate");
+        console.log(snapShot);
+    }
+
+    componentWillUnmount() {
+        console.log("[Persons.js] componentWillUnmount.");
+    }
+
     render () {
         console.log("5. [Persons.js] render..");
         return (

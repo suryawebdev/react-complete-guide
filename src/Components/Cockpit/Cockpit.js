@@ -1,8 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
     
 import CockpitCSS from './Cockpit.module.css';
 
 const Cockpit = (props) => {
+    useEffect(()=> {
+        console.log("[Cockpit.js] UseEffect");
+        setTimeout(() => {
+            alert('Something to alert!');
+        }, 1000)
+    }, []);
+
     console.log("4. [Cockpit.js] render..")
     let btnClass = '';
 
@@ -25,3 +32,6 @@ const Cockpit = (props) => {
 }
 
 export default Cockpit;
+
+//UseEffect is similiar to reach lifecycle hooks
+//UseEffect takes callback params as []-> which denoted when/how many times that needed to be called
