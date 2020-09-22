@@ -8,7 +8,17 @@ const Cockpit = (props) => {
         setTimeout(() => {
             alert('Something to alert!');
         }, 1000)
+        return () => {
+            console.log("[Cockpit.js] cleanup useeffect. ")
+        }
     }, []);
+
+    useEffect(() => {
+        console.log("[Cockpit.js] 2nd UseEffect");
+        return () => {
+            console.log("[Cockpit.js] 2nd cleanup useeffect. ")
+        }
+    })
 
     console.log("4. [Cockpit.js] render..")
     let btnClass = '';
