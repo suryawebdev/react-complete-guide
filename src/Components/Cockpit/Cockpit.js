@@ -1,4 +1,6 @@
 import React, {useEffect} from 'react';
+
+import Aux from '../../Hoc/Aux';
     
 import CockpitCSS from './Cockpit.module.css';
 
@@ -28,7 +30,7 @@ const Cockpit = (props) => {
     }
 
     return (
-        <div className={CockpitCSS.Cockpit}>
+        <Aux>
             <h1>This is Surya</h1>
             <h2>{props.title}</h2>
             <p>This is the React Application I have started working on.</p>
@@ -37,7 +39,7 @@ const Cockpit = (props) => {
                 className={btnClass}
                 onClick={props.toggle}>Toggle Button
                     </button>
-        </div>
+        </Aux>
     );
 }
 
@@ -50,3 +52,6 @@ export default React.memo(Cockpit);
 //React.memo() -> only re renders the component if any of the input params changes in it's component
 //We can used this in funcional components whenever we don't want to render child component when parent components are 
     //are rendering without any input change
+
+
+//Aux is component that can render components in adjacent way..
