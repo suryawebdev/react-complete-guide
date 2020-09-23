@@ -41,7 +41,12 @@ const Cockpit = (props) => {
     );
 }
 
-export default Cockpit;
+export default React.memo(Cockpit);
 
 //UseEffect is similiar to reach lifecycle hooks
 //UseEffect takes callback params as []-> which denoted when/how many times that needed to be called
+
+//Notes:
+//React.memo() -> only re renders the component if any of the input params changes in it's component
+//We can used this in funcional components whenever we don't want to render child component when parent components are 
+    //are rendering without any input change

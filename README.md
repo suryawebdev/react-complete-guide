@@ -31,3 +31,26 @@ This is Sample application... Have FUN.
     //Links for css modules: https://github.com/css-modules/css-modules
     //With CSS modules, you can write normal CSS code and make sure, that it only applies to a given component.
     //it'll simply automatically generate unique CSS class names for you. And by importing a JS object and assigning classes from there, you use these dynamically generated, unique names.
+
+
+//Notes: 09/22/2020
+//Class based components uses should componentUpdate for performance optimizations.
+//Functional components uses React.memo
+
+//Pure Component -> in React when we extend components with pureComponent,
+    //then it automatically implemets shouldComponentUpdate behind the scened and checks for all the props for that
+    //component before rerendering the component
+
+//Virtual DOM
+    //React maintains two virtual DOMs all the time
+    //1.Old virtual DOM and 2. Re-Rendered Virtual DOM
+    //It compares between both old and re-rendered virtual doms and find if any differences were found,
+    //If differences were found between both it will only re-render only the parts that were changed in the respective
+    //If no differences were found it will not re-render any thing, it keeps the old one.
+
+//JSX cannot render adjacent elements, 1.they need to be either wrapped by a single element or, 
+    //2.they can be passes as an array of elements
+
+    //EX1: return (<div>something</div>);
+    //EX2: return [<div key="i1">Something</div>,
+                    <div key="i2" >something2</div>]

@@ -1,22 +1,21 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 
 import Person from './Person/Person';
 
-class Persons extends Component {
+class Persons extends PureComponent {
     // static getDerivedStateFromProps(props, state) {
     //     console.log("[Persons.js] getDerivedStateFromProps", state);
     //     return state;
     // }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log("[Persons.js] shouldComponentUpdate", nextState);
-        if(nextProps.person != this.props.person) {
-            return true;
-        } else {
-            return false
-        }
-        // return true;
-    }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log("[Persons.js] shouldComponentUpdate", nextState);
+    //     if(nextProps.person != this.props.person) {
+    //         return true;
+    //     } else {
+    //         return false
+    //     }
+    // }
 
     getSnapshotBeforeUpdate(prevProps, prevState) {
         console.log("[Persons.js] getSnapshotBeforeUpdate", prevState);
@@ -68,3 +67,10 @@ export default Persons;
 //         })
 //     );
 // }
+
+//Class based components uses should componentUpdate for performance optimizations.
+//Functional components uses React.memo
+
+//Pure Component -> in React when we extend components with pureComponent,
+    //then it automatically implemets shouldComponentUpdate behind the scened and checks for all the props for that
+    //component before rerendering the component
