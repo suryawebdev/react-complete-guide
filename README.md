@@ -56,3 +56,8 @@ This is Sample application... Have FUN.
                     <div key="i2" >something2</div>]
 
 //In react 16.2 and later it did provided with Aux component to wrap adjacent elements in render using React.Fragment
+
+
+//HOC: Higher Order Components
+    //Because it just wraps another components
+    //Usually these doesn't have any stylings as well 

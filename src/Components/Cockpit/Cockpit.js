@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, Fragment} from 'react';
 
 import Aux from '../../Hoc/Aux';
     
@@ -30,7 +30,7 @@ const Cockpit = (props) => {
     }
 
     return (
-        <Aux>
+        <Fragment>
             <h1>This is Surya</h1>
             <h2>{props.title}</h2>
             <p>This is the React Application I have started working on.</p>
@@ -39,7 +39,7 @@ const Cockpit = (props) => {
                 className={btnClass}
                 onClick={props.toggle}>Toggle Button
                     </button>
-        </Aux>
+        </Fragment>
     );
 }
 
