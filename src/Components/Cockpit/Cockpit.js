@@ -1,15 +1,23 @@
-import React, {useEffect, Fragment} from 'react';
+import React, {useEffect, Fragment, useRef} from 'react';
 
 import Aux from '../../Hoc/Aux';
     
 import CockpitCSS from './Cockpit.module.css';
+import AuthContext from '../../context/auth-context';
 
 const Cockpit = (props) => {
+    const toggleBtn = useRef(null);
+
+    //UseEffect runs after jsx code is parsed and rendered
+    //in Functional based components
+
     useEffect(()=> {
         console.log("[Cockpit.js] UseEffect");
-        setTimeout(() => {
-            alert('Something to alert!');
-        }, 1000)
+        //Http request
+        // setTimeout(() => {
+        //     alert('Something to alert!');
+        // }, 1000)
+        toggleBtn.current.click();
         return () => {
             console.log("[Cockpit.js] cleanup useeffect. ")
         }
@@ -30,16 +38,18 @@ const Cockpit = (props) => {
     }
 
     return (
-        <Fragment>
-            <h1>This is Surya</h1>
-            <h2>{props.title}</h2>
-            <p>This is the React Application I have started working on.</p>
+      <Fragment>
+        <h1>This is Surya</h1>
+        <h2>{props.title}</h2>
+        <p>This is the React Application I have started working on.</p>
 
-            <button
-                className={btnClass}
-                onClick={props.toggle}>Toggle Button
-                    </button>
-        </Fragment>
+        <button ref={toggleBtn} className={btnClass} onClick={props.toggle}>
+          Toggle Button
+        </button>
+        <AuthContext.Consumer>
+          {(context) => <button onClick={context.login}>Login</button>}
+        </AuthContext.Consumer>
+      </Fragment>
     );
 }
 

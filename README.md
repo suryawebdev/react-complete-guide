@@ -61,3 +61,39 @@ This is Sample application... Have FUN.
 //HOC: Higher Order Components
     //Because it just wraps another components
     //Usually these doesn't have any stylings as well 
+
+//PropTyeps:
+    //Prop types is an react extention where we can define the type of property if we want to pass the components
+    //It helps if we distribute components.
+
+//Ref:
+    //Class based component ref approach
+    //ref={(inputEle)=> {this.inputElement = inputEle}}
+    //By passing ref we can directly handle the nth element 
+
+    //React.createRef() -> creates reference to element that is assigned to and stores it
+    //And this only works in class based components
+
+    //Functional based components use useRef() -> React hook
+
+//Prop chain problem is handled by react context. 
+
+
+//Context:
+    //React context is used to solve prop chain problem
+    //Context has Provider and consumer methods 
+
+    //Provider provides the props which weneed to pass on as props to the desired child elements
+    //Consumer uses these props passed in provide and uses them as props in those methods.
+
+    Ex:. 
+                <AuthContext.Provider value={{
+                authenticate: this.state.authenticated, 
+                login: this.loginHandler
+                }}><AuthContext.Provider>
+                //Here the values are passed as props
+
+                <AuthContext.Consumer>
+                    {(context) => <button onClick={context.login}>Login</button>}
+                </AuthContext.Consumer>
+                //Here Consumer uses context of the apps to point out the props that has been passed on by provider.

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import PersonCSS from './Person.module.css';
 import withClass from '../../../Hoc/WithClass';
+import Aux from '../../../Hoc/Aux';
+import AuthContext from '../../../context/auth-context';
 
 
 class Person extends Component {
@@ -19,18 +21,29 @@ class Person extends Component {
     render() {
         console.log("6. [Person.js] render..")
         return (
-            <div className={PersonCSS.Person}>
-                <p onClick={this.props.click}>This is {this.props.name} and I am {this.props.age} years age</p>
-                <p>{this.props.children}</p>
-                <input 
-                type="text" 
-                // ref={(inputEle)=> {this.inputElement = inputEle}}
-                ref={this.inputElementRef}
-                onChange={this.props.changed} 
-                value={this.props.name} 
-                />
-            </div>
-        )
+          <Aux>
+            <AuthContext.Consumer>
+              {(context) =>
+                context.authenticate ? (
+                  <p>Authenticated!</p>
+                ) : (
+                  <p>Please Login!</p>
+                )
+              }
+            </AuthContext.Consumer>
+            <p onClick={this.props.click}>
+              This is {this.props.name} and I am {this.props.age} years age
+            </p>
+            <p>{this.props.children}</p>
+            <input
+              type="text"
+              // ref={(inputEle)=> {this.inputElement = inputEle}}
+              ref={this.inputElementRef}
+              onChange={this.props.changed}
+              value={this.props.name}
+            />
+          </Aux>
+        );
     }
 
 };
@@ -80,13 +93,3 @@ export default withClass(Person, PersonCSS.Person);
 //     )
 // };
 
-//PropTyeps:
-    //Prop types is an react extention where we can define the type of property if we want to pass the components
-    //It helps if we distribute components.
-
-//Ref:
-    //Class based component ref approach
-    //ref={(inputEle)=> {this.inputElement = inputEle}}
-    //By passing ref we can directly handle the nth element 
-
-    //React.createRef() -> creates reference to element that is assigned to and stores it

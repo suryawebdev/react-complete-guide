@@ -5,6 +5,7 @@ import Persons from '../Components/Persons/Persons';
 import Cockpit from '../Components/Cockpit/Cockpit';
 import withClass from '../Hoc/WithClass';
 import Aux from '../Hoc/Aux';
+import AuthContext from '../context/auth-context';
 
 class App extends Component {
     constructor(props) {
@@ -43,7 +44,12 @@ class App extends Component {
             {id: "isej", name:"Ajay", age:29}
         ],
         showPerson: false,
-        showCockpit: true
+        showCockpit: true,
+        authenticated: false
+    }
+
+    loginHandler = () => {
+        this.setState({authenticated:true});
     }
 
     buttonHandler = (name) => {
@@ -105,22 +111,35 @@ class App extends Component {
                     person={this.state.persons}
                     deleted={this.deletePersonHandler}
                     changed={this.nameChangeHandler}/>
+                    isAuthenticated={this.state.authenticated}
                 </div>
             );
         }
 
         return (
           <Aux>
-              <button onClick={()=> {
-                    this.setState({ showCockpit:false})
-                  }}>Remove Cockpit</button>
-            {this.state.showCockpit ?
-            (<Cockpit 
-                title={this.props.appTitle}
-                persons ={this.state.persons.length }
-                toggle={this.toggleButtonHandler}
-                showPerson={this.state.showPerson}/>) : null}
-            {person}
+            <button
+              onClick={() => {
+                this.setState({ showCockpit: false });
+              }}
+            >
+              Remove Cockpit
+            </button>
+            <AuthContext.Provider value={{
+                authenticate: this.state.authenticated, 
+                login: this.loginHandler
+                }}
+            >
+              {this.state.showCockpit ? (
+                <Cockpit
+                  title={this.props.appTitle}
+                  persons={this.state.persons.length}
+                  toggle={this.toggleButtonHandler}
+                  showPerson={this.state.showPerson}
+                />
+              ) : null}
+              {person}
+            </AuthContext.Provider>
           </Aux>
         );
         //return React.createElement('div', null, )
