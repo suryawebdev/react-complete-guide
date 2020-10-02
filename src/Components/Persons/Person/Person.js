@@ -13,6 +13,8 @@ class Person extends Component {
         this.inputElementRef = React.createRef();//Create Ref was introduced in react 16 and later
     }
 
+    static contextType = AuthContext;
+
     componentDidMount() {
         // this.inputElement.focus()
         this.inputElementRef.current.focus();
@@ -22,15 +24,12 @@ class Person extends Component {
         console.log("6. [Person.js] render..")
         return (
           <Aux>
-            <AuthContext.Consumer>
-              {(context) =>
-                context.authenticate ? (
+              {this.context.authenticate ? (
                   <p>Authenticated!</p>
                 ) : (
                   <p>Please Login!</p>
                 )
               }
-            </AuthContext.Consumer>
             <p onClick={this.props.click}>
               This is {this.props.name} and I am {this.props.age} years age
             </p>

@@ -1,4 +1,4 @@
-import React, {useEffect, Fragment, useRef} from 'react';
+import React, {useEffect, Fragment, useRef, useContext} from 'react';
 
 import Aux from '../../Hoc/Aux';
     
@@ -7,6 +7,7 @@ import AuthContext from '../../context/auth-context';
 
 const Cockpit = (props) => {
     const toggleBtn = useRef(null);
+    const authContext = useContext(AuthContext);
 
     //UseEffect runs after jsx code is parsed and rendered
     //in Functional based components
@@ -46,9 +47,10 @@ const Cockpit = (props) => {
         <button ref={toggleBtn} className={btnClass} onClick={props.toggle}>
           Toggle Button
         </button>
-        <AuthContext.Consumer>
+        {/* <AuthContext.Consumer>
           {(context) => <button onClick={context.login}>Login</button>}
-        </AuthContext.Consumer>
+        </AuthContext.Consumer> */}
+        {<button onClick={authContext.login}>Login</button>}
       </Fragment>
     );
 }

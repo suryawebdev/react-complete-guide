@@ -97,3 +97,12 @@ This is Sample application... Have FUN.
                     {(context) => <button onClick={context.login}>Login</button>}
                 </AuthContext.Consumer>
                 //Here Consumer uses context of the apps to point out the props that has been passed on by provider.
+
+
+    //In React 16.6 and later context can be defined in different ways as well
+    //For class based components
+        //static contextType = AuthContext;
+        //Thus we can acess context from this
+
+    //For functional based components
+        //Use react hook-> useContext and pass on that context.
